@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <title>Blue Screen Simulator</title>
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+    <style>
+      @font-face {
+        font-family: "lucidaconsole";
+        src: url(Fonts/Lucida\ Console\ Regular.ttf);
+      }
+
+      body{
+        background-color: #000082;
+        color: black;
+
+        font-family: "lucidaconsole";
+
+        overflow: hidden;
+      }
+
+
+    </style>
+  </head>
+  <body>
+      <div class="background">
+        <div id="mainwindow" class="window glass active" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 692px">
+          <div id="mainwindowheader" class="title-bar">
+            <div class="title-bar-text">Blue Screen Simulator</div>
+            <div class="title-bar-controls">
+              <button aria-label="Minimize"></button>
+              <button aria-label="Maximize" disabled></button>
+              <button aria-label="Close"></button>
+            </div>
+          </div>
+          <div class="window-body has-space">
+            <h4 style="display: inline-block; text-align: center;">Blue Screen Simulator</h4>
+            <p>Pick a blue screen from any operating system!</p>
+            <div id="operatingsystems">
+                <button onclick="location.href = 'BSODs/9x.html'" class="oses"><img src="Images/9x.png" width="64" height="64" style="margin: auto; display: block">Windows 9x</button>
+                <button onclick="location.href = 'BSODs/xp.html'" class="oses"><img src="Images/xp.png" width="64" height="64" style="margin: auto; display: block">Windows XP</button>
+                <button onclick="location.href = 'BSODs/vista.html'" class="oses"><img src="Images/vista.png"  width="64" height="64" style="margin: auto; display: block">Windows Vista</button>
+                <button onclick="location.href = 'BSODs/7.html'" class="oses"><img src="Images/7.png"  width="64" height="64" style="margin: auto; display: block">Windows 7</button>
+                <button onclick="location.href = 'BSODs/8.html'" class="oses"><img src="Images/10.png" width="64" height="64" style="margin: auto; display: block">Windows 8.x</button>
+                <button onclick="location.href = 'BSODs/10.html'" class="oses"><img src="Images/10.png" width="64" height="64" style="margin: auto; display: block">Windows 10</button>
+                <button onclick="location.href = 'BSODs/11.html'" class="oses"><img src="Images/11.png" width="64" height="64" style="margin: auto; display: block">Windows 11</button>
+            </div>
+
+            <script>
+                dragElement(document.getElementById("mainwindow"));
+
+                function dragElement(elmnt) {
+                  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                  if (document.getElementById(elmnt.id + "header")) {
+                    // if present, the header is where you move the DIV from:
+                    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+                  } else {
+                    // otherwise, move the DIV from anywhere inside the DIV:
+                    elmnt.onmousedown = dragMouseDown;
+                  }
+
+                  function dragMouseDown(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // get the mouse cursor position at startup:
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    document.onmouseup = closeDragElement;
+                    // call a function whenever the cursor moves:
+                    document.onmousemove = elementDrag;
+                  }
+
+                  function elementDrag(e) {
+                    e = e || window.event;
+                    e.preventDefault();
+                    // calculate the new cursor position:
+                    pos1 = pos3 - e.clientX;
+                    pos2 = pos4 - e.clientY;
+                    pos3 = e.clientX;
+                    pos4 = e.clientY;
+                    // set the element's new position:
+                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                  }
+
+                  function closeDragElement() {
+                    // stop moving when mouse button is released:
+                    document.onmouseup = null;
+                    document.onmousemove = null;
+                  }
+                }
+                
+                function search_system() {
+                  let input = document.getElementById('searchbar').value
+                  input=input.toLowerCase();
+                  let x = document.getElementsByClassName('oses');
+                  
+                  for (i = 0; i < x.length; i++) {
+                    if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                      x[i].style.display="none";
+                    }
+                    else {
+                      x[i].style.display="inline-block";				
+                    }
+                  }
+                }
+            </script>
+          </div>
+          <div class="status-bar">
+            <div class="searchbox">
+              <input type="search" id="searchbar" placeholder="Search an operating system" onkeyup="search_system()" />
+              <button aria-label="search"></button>
+            </div>
+            <button disabled title="Unfinished">Update Simulator</button>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title>Blue Screen Simulator</title>
+    <link rel="stylesheet" href="https://unpkg.com/7.css">
+    <style>
+      @font-face {
+        font-family: "segoeui";
+        src: url(../Fonts/segoeui.ttf);
+      }
+
+      body, html{
+        background-color: #000000;
+        color: white;
+
+        font-family: "segoeui";
+
+        font-size: 24px;
+
+        margin: 0px;
+
+        cursor: none;
+
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="width: calc(100% - 48px); height: calc(100% - 48px); margin: 24px;">
+        <p style="font-size: 128px;">
+          &nbsp&nbsp&nbsp:(
+        </p>
+        <p style="position: relative; left: 120px; width: 80%; bottom: 96px;">Your PC ran into a problem and needs to restart. We're just collecting some error info, and then we'll restart for you. <br><br>0% complete<br><br></p>
+        <img src="../Images/qr_code.png" style="display: block; position: relative;left:120px;bottom:100px;">
+        <p style="position: relative; left: 250px; width: 80%; bottom: 236px; font-size: 16px;">For more information about this issue and possible fixes, visit https://www.windows.com/stopcode<br><br><br>If you call a support person, give them this info:<br>Stop code: CRITICAL_PROCESS_DIED</p>
+    </div>
+  </body>
+</html>
